@@ -1,0 +1,55 @@
+---
+title: "ShinyApp Presentation"
+author: "Francisco Martín"
+date: "November, 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This is the presentation of my Data Science Capstone final project, a Shiny App text 
+predictor located on Shini.io. This text predictor will take an input (word or phrase) 
+and return the three more likely choices. For that, I have used a database of tweets, news 
+and blogs provided by Coursera Data Science Capstone by John Hopkins University.
+
+All develop is done using several R packages, such as tm for text mining, RWeka for tokenize 
+and create N-Grams and others like stringi and dplyr for data treatment.
+
+
+
+## Methods and Models
+
+Raw data (HC Corpora data) is downloaded from Coursera course webpage. A small random subset 
+is cleaned using tm package, removing punctuation, emoticons, URLs, numbers and multispaces, 
+and converting all characters into lowercase. After this, and using an external list, profane 
+words are removed.
+
+Once the subset is cleaned, and using RWeka, three first N-Grams are obtained. This means look in 
+the whole subset all two-words combinations, and saving it in a new dataset, previously ordered by 
+number of apparition.
+
+Once bigrams, trigrams and quadgrams datasets are generated, the ShinyApp predictor will look for the 
+3~1 last words of the input in the N-grams dataset, and return the three more probable words for 
+the input.
+
+## App performance
+
+The app will have a text box where you can put your input. Once "submit" button is held down, app will 
+check in its data base and return the three most probable words in prediction. In case there are only one 
+or two suggestions, the other predictions will be punctuation. 
+
+Before search in database, app will clean input data, and choose which one of the three databases (bigrams, 
+trigrams and quadgrams) will fit better in your input.
+
+
+
+## Other interesting data
+
+- ShinyApp is hosted on 
+
+- Repository with all project code: <https://github.com/k9martin/DataScienceCapstone>
+
